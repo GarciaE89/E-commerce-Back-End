@@ -1,3 +1,5 @@
+const { log } = require('console');
+
 const router = require('express').Router();
 const {Category, Product} = require=('../../../models');
 
@@ -31,7 +33,8 @@ router.get('/:id', (req, res) => {
       },
       include: [
         {
-          model: Product
+          model: Product,
+          attributes: ['id', 'product_name', 'price', 'stock']
         }
       ]
     })
@@ -47,3 +50,25 @@ router.get('/:id', (req, res) => {
         res.status(500).json(err);
       });
   });
+
+  router.post('/', (req, res) => {
+    //   new category will be created
+    Category.create({
+        category_name: req.body.category_name
+    })
+    .then(dbPostData => res.json(dbPostData))
+    .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+    });
+  });
+
+  router.put('/:id', (req, res) => {
+    // update a category by its `id` value
+  });
+  
+  router.delete('/:id', (req, res) => {
+    // delete a category by its `id` value
+  });
+  
+  module.exports = router;
