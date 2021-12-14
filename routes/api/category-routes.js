@@ -77,7 +77,7 @@ router.get('/:id', (req, res) => {
     )
     .then(dbPostData => {
         if(!dbPostData) {
-            res.status(404).json({message: 'No category with found with provided Id!'});
+            res.status(404).json({message: 'No category found with provided Id!'});
             return;
         }
         res.json(dbPostData);
