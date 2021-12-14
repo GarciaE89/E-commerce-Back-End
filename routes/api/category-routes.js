@@ -1,7 +1,7 @@
 
 
 const router = require('express').Router();
-const {Category, Product} = require=('../../../models');
+const {Category, Product} = require=('../../models');
 
 router.get('/', (req, res) => {
     // find all of the ecommerce catergories 
